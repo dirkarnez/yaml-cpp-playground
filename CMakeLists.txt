@@ -1,27 +1,25 @@
 cmake_minimum_required(VERSION 3.19)
-set (CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11)
+
 project(yaml-cpp-boilerplate)
 
+set(YAML_CPP_ROOT "D:\\Code Projects\\Cpp Libraries\\yaml-cpp")
 
-# Build yaml-cpp version 0.6.2
-include(ExternalProject)
-
-ExternalProject_Add(yaml-cpp-062
-  SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/yaml-cpp
-  BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/yaml-cpp/build
-  CMAKE_ARGS
-    -DYAML_CPP_BUILD_TESTS=OFF
-    -Wno-dev
+link_directories(
+  ${YAML_CPP_ROOT}/build
 )
 
-set(headers
-  ${CMAKE_CURRENT_SOURCE_DIR}/yaml-cpp/include/
-)
-
-set(libraries
-  ${CMAKE_CURRENT_SOURCE_DIR}/yaml-cpp/build/Debug/yaml-cppd.lib
-)
-
-include_directories(${headers})
 add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME} ${libraries})
+
+set(YAML_CPP_BUILD_TOOLS OFF)
+set(YAML_CPP_BUILD_TESTS OFF)
+set(YAML_BUILD_SHARED_LIBS OFF)
+
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+      ${YAML_CPP_ROOT}/include)
+
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE 
+    debug yaml-cppd
+    optimized yaml-cpp)

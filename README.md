@@ -1,14 +1,13 @@
 yaml-cpp-boilerplate
 ====================
-WIP
-
 ### How to build
-1. git clone yaml-cpp to root directory
-2. cmake
-3. open solution
-4. build yaml-cpp first
-5. build yaml-cpp-boilerplate
-
-### Reference
-- https://gitlab.com/machine_learning_in_an_emulated_environment/elmchey/blob/master/CMakeLists.txt
-- https://git.kolodziej.it/KolK/ircbot
+1. git clone yaml-cpp to somewhere
+2. `cd yaml-cpp`
+3. `mkdir build`
+4. `cd build`
+5. `cmake ..`
+6. `cd yaml-cpp-boilerplate`
+7. Modify `YAML_CPP_ROOT` in `CMakeLists.txt`
+8. `mkdir build`
+9. `cd build`
+10. `cmake ..`
