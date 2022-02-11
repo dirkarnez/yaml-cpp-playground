@@ -1,25 +1,27 @@
 cmake_minimum_required(VERSION 3.19)
+
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(yaml-cpp-boilerplate)
 
-set(YAML_CPP_ROOT "D:\\Code Projects\\Cpp Libraries\\yaml-cpp")
+find_package(yaml-cpp 0.7.0 EXACT REQUIRED PATHS ${YAML_CPP_ROOT})
 
-link_directories(
-  ${YAML_CPP_ROOT}/build
+if (yaml-cpp_FOUND)
+    message("yaml-cpp found")
+else (yaml-cpp_FOUND)
+    message("yaml-cpp not found")
+endif()
+
+
+add_executable(${PROJECT_NAME} 
+    "src/main.cpp"
 )
 
-add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} yaml-cpp)
 
-set(YAML_CPP_BUILD_TOOLS OFF)
-set(YAML_CPP_BUILD_TESTS OFF)
-set(YAML_BUILD_SHARED_LIBS OFF)
-
-target_include_directories(${PROJECT_NAME}
-    PRIVATE
-      ${YAML_CPP_ROOT}/include)
-
-target_link_libraries(${PROJECT_NAME}
-  PRIVATE 
-    debug yaml-cppd
-    optimized yaml-cpp)
+# target_link_libraries(${PROJECT_NAME}
+#   PRIVATE yamlcpp)
+  
+#     # debug yaml-cppd
+#     # optimized yaml-cpp)
