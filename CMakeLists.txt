@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.19)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-project(yaml-cpp-boilerplate)
+project(yaml-cpp-playground)
 
 find_package(yaml-cpp 0.7.0 EXACT REQUIRED PATHS ${YAML_CPP_ROOT})
 
